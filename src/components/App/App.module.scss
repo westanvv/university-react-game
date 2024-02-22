@@ -1,0 +1,35 @@
+@use 'src/styles/mixins';
+@use 'src/styles/vars';
+
+.root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: var(--color-primary);
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+
+  @include mixins.respond-less(vars.$screen-xs) {
+    font-size: 1rem;
+  }
+}
+
+.content {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: vars.$content-width;
+  flex-grow: 1;
+
+  @include mixins.respond-less(vars.$screen-lg) {
+    width: 100%;
+  }
+}
