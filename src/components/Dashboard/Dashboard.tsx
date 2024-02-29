@@ -1,9 +1,7 @@
-import React, {useState, useEffect} from 'react';
-
-import O from 'src/assets/o.svg';
-import X from 'src/assets/x.svg';
+import React, {useState, useEffect, useMemo, useCallback, memo} from 'react';
 
 import {Board, BOARD_ELEMENT} from 'src/types';
+import BoardItem from 'src/components/BoardItem';
 
 import styles from './Dashboard.module.scss';
 
@@ -15,6 +13,10 @@ function Dashboard() {
     [undefined, undefined, undefined],
   ]);
 
+  const nextStep = useMemo(() => {
+    return queueStep === BOARD_ELEMENT.o ? BOARD_ELEMENT.x : BOARD_ELEMENT.o;
+  }, [queueStep]);
+
   useEffect(() => {
     console.log('Created');
   }, []);
@@ -23,13 +25,16 @@ function Dashboard() {
     console.log('queue changed');
   }, [queueStep]);
 
-  const handleClick = (row: number, col: number) => {
-    const tmpBoard = [...board];
-    tmpBoard[row][col] = queueStep === BOARD_ELEMENT.o ? BOARD_ELEMENT.x : BOARD_ELEMENT.o;
+  const handleClick = useCallback(
+    (row: number, col: number) => {
+      const tmpBoard = [...board];
+      tmpBoard[row][col] = queueStep === BOARD_ELEMENT.o ? BOARD_ELEMENT.x : BOARD_ELEMENT.o;
 
-    setBoard(tmpBoard);
-    setQueueStep(queueStep === BOARD_ELEMENT.o ? BOARD_ELEMENT.x : BOARD_ELEMENT.o);
-  };
+      setBoard(tmpBoard);
+      setQueueStep(queueStep === BOARD_ELEMENT.o ? BOARD_ELEMENT.x : BOARD_ELEMENT.o);
+    },
+    [board, queueStep]
+  );
 
   return (
     <div className={styles.root}>
@@ -38,33 +43,16 @@ function Dashboard() {
         {board.map((row, rowIndex) => (
           <div key={rowIndex} className={styles.row}>
             {row.map((col, colIndex) => (
-              <div key={colIndex} className={styles.col} onClick={() => handleClick(rowIndex, colIndex)}>
-                {board[rowIndex][colIndex] === BOARD_ELEMENT.o && <img src={O} />}
-                {board[rowIndex][colIndex] === BOARD_ELEMENT.x && <img src={X} />}
-              </div>
+              <BoardItem
+                key={colIndex}
+                value={board[rowIndex][colIndex]}
+                onClick={handleClick}
+                rowIndex={rowIndex}
+                colIndex={colIndex}
+              />
             ))}
           </div>
         ))}
-
-        {/*<div className={styles.row}>*/}
-        {/*  <div className={styles.col} />*/}
-        {/*  <div className={styles.col}>*/}
-        {/*    <img src={O} />*/}
-        {/*  </div>*/}
-        {/*  <div className={styles.col} />*/}
-        {/*</div>*/}
-        {/*<div className={styles.row}>*/}
-        {/*  <div className={styles.col} />*/}
-        {/*  <div className={styles.col} />*/}
-        {/*  <div className={styles.col}>*/}
-        {/*    <img src={X} />*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-        {/*<div className={styles.row}>*/}
-        {/*  <div className={styles.col} />*/}
-        {/*  <div className={styles.col} />*/}
-        {/*  <div className={styles.col} />*/}
-        {/*</div>*/}
       </div>
     </div>
   );

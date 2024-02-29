@@ -1,0 +1,16 @@
+$border: 1px solid var(--color-primary-dark);
+
+.root {
+  width: 100px;
+  height: 100px;
+  border-left: $border;
+  cursor: pointer;
+
+  &:last-child {
+    border-right: $border;
+  }
+
+  &:hover {
+    background-color: var(--color-primary-light);
+  }
+}
