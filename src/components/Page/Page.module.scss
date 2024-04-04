@@ -1,0 +1,20 @@
+@use 'src/styles/mixins';
+@use 'src/styles/vars';
+
+.root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: vars.$content-width;
+  flex-grow: 1;
+
+  @include mixins.respond-less(vars.$screen-lg) {
+    width: 100%;
+  }
+}
