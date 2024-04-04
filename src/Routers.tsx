@@ -2,13 +2,17 @@ import React, {memo} from 'react';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import Page from 'src/components/Page';
 
+import GameProvider from 'src/contexts/Game';
+
 import NotFound from 'src/pages/NotFound';
 import Home from 'src/pages/Home';
 import Game from 'src/pages/Game';
 
+import routes from 'src/routes';
+
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: routes.home,
     element: (
       <Page>
         <Home />
@@ -16,10 +20,12 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/game',
+    path: routes.game,
     element: (
       <Page>
-        <Game />
+        <GameProvider>
+          <Game />
+        </GameProvider>
       </Page>
     ),
   },

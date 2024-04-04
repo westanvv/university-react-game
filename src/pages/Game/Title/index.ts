@@ -1,4 +1,4 @@
-import Title, {TitleProps, TitleRefs} from './Title';
+import Title, {TitleRefs} from './Title';
 
 export default Title;
-export type {TitleProps, TitleRefs};
+export type {TitleRefs};

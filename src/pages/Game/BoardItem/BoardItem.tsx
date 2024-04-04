@@ -1,23 +1,26 @@
-import React, {memo} from 'react';
+import React, {memo, useContext} from 'react';
 
 import O from 'src/assets/o.svg';
 import X from 'src/assets/x.svg';
 
 import {BOARD_ELEMENT} from 'src/types';
+import {GameContext} from 'src/contexts/Game';
 
 import styles from './BoardItem.module.scss';
 
 export interface BoardItemProps {
   colIndex: number;
-  onClick(row: number, col: number): void;
   rowIndex: number;
-  value?: BOARD_ELEMENT;
 }
 
-function BoardItem({onClick, value, colIndex, rowIndex}: BoardItemProps) {
+function BoardItem({colIndex, rowIndex}: BoardItemProps) {
+  const game = useContext(GameContext);
+
   const handleClick = () => {
-    onClick(rowIndex, colIndex);
+    game.updateBoard(rowIndex, colIndex);
   };
+
+  const value = game.board[rowIndex][colIndex];
 
   return (
     <div className={styles.root} onClick={handleClick}>

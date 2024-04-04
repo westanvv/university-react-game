@@ -1,14 +1,14 @@
-import React, {useCallback, useEffect, useRef} from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, {useCallback, useContext, useEffect, useRef} from 'react';
 
-import {useGame} from 'src/hooks';
 import BoardItem from 'src/pages/Game/BoardItem';
 import Title, {TitleRefs} from 'src/pages/Game/Title';
 
 import styles from './Game.module.scss';
+import {GameContext} from '../../contexts/Game';
 
 function Game() {
-  const {board, queueStep, updateBoard} = useGame();
+  const game = useContext(GameContext);
+
   const titleRef = useRef<TitleRefs | null>(null);
   const valueRef = useRef<number>(0);
 
@@ -32,18 +32,12 @@ function Game() {
 
   return (
     <div className={styles.root}>
-      <Title ref={ref => (titleRef.current = ref)} queueStep={queueStep} />
+      <Title ref={ref => (titleRef.current = ref)} />
       <div className={styles.content}>
-        {board.map((row, rowIndex) => (
+        {game.board.map((row, rowIndex) => (
           <div key={rowIndex} className={styles.row}>
             {row.map((col, colIndex) => (
-              <BoardItem
-                key={colIndex}
-                value={board[rowIndex][colIndex]}
-                onClick={updateBoard}
-                rowIndex={rowIndex}
-                colIndex={colIndex}
-              />
+              <BoardItem key={colIndex} rowIndex={rowIndex} colIndex={colIndex} />
             ))}
           </div>
         ))}

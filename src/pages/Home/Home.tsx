@@ -1,13 +1,14 @@
 import React, {memo, useCallback} from 'react';
 import {useNavigate} from 'react-router-dom';
 
+import routes from 'src/routes';
 import styles from './Home.module.scss';
 
 function Home() {
   const navigate = useNavigate();
 
   const handleClick = useCallback(() => {
-    navigate('/game');
+    navigate(routes.game);
   }, [navigate]);
 
   return (
