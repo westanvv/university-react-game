@@ -1,7 +1,7 @@
 import React, {ReactNode, useCallback, useState, useMemo} from 'react';
 
 import GameContext, {GameContextType} from './GameContext';
-import {Board, BOARD_ELEMENT} from '../../types';
+import {Board, BOARD_ELEMENT} from 'src/types';
 
 export interface GameProviderProps {
   children: ReactNode;

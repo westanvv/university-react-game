@@ -1,10 +1,10 @@
 import React, {useCallback, useContext, useEffect, useRef} from 'react';
 
+import {GameContext} from 'src/contexts';
 import BoardItem from 'src/pages/Game/BoardItem';
 import Title, {TitleRefs} from 'src/pages/Game/Title';
 
 import styles from './Game.module.scss';
-import {GameContext} from '../../contexts/Game';
 
 function Game() {
   const game = useContext(GameContext);

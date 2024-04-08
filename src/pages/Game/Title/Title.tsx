@@ -1,7 +1,6 @@
 import React, {memo, forwardRef, useImperativeHandle, useMemo, useContext} from 'react';
 
-import {GameContext} from 'src/contexts/Game';
-
+import {GameContext} from 'src/contexts';
 import {BOARD_ELEMENT} from 'src/types';
 import styles from './Title.module.scss';
 

@@ -4,7 +4,7 @@ import O from 'src/assets/o.svg';
 import X from 'src/assets/x.svg';
 
 import {BOARD_ELEMENT} from 'src/types';
-import {GameContext} from 'src/contexts/Game';
+import {GameContext} from 'src/contexts';
 
 import styles from './BoardItem.module.scss';
 

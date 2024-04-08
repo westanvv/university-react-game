@@ -2,7 +2,7 @@ import React, {memo} from 'react';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import Page from 'src/components/Page';
 
-import GameProvider from 'src/contexts/Game';
+import {GameProvider} from 'src/contexts';
 
 import NotFound from 'src/pages/NotFound';
 import Home from 'src/pages/Home';
