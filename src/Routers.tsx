@@ -10,6 +10,7 @@ import Game from 'src/pages/Game';
 
 import routes from 'src/routes';
 
+const tets = 4;
 const router = createBrowserRouter([
   {
     path: routes.home,
