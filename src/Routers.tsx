@@ -15,18 +15,11 @@ const router = createBrowserRouter([
     path: routes.home,
     element: (
       <Page>
-
-
-
-
-
-
-
-
-                <Home />
+        <Home />
       </Page>
     ),
-  },  {
+  },
+  {
     path: routes.game,
     element: (
       <Page>
