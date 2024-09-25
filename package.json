@@ -5,7 +5,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "eslint",
     "prepare": "husky"
   },
   "dependencies": {
@@ -39,7 +38,6 @@
     ]
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint",
     "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
   }
 }
